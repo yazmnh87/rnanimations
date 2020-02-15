@@ -6,7 +6,7 @@ import NavigationService from './src/utils/NavigationService'
 const App = props => {
 
   useEffect(()=>{
-    NavigationService.navigate('ViewHeightWidth')
+    NavigationService.navigate('ReanimatedTransitionAnimation')
   },[])
   return (
     <>
