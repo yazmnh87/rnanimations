@@ -1,31 +1,40 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native'
+import {View, StyleSheet, SafeAreaView, Text} from 'react-native'
+import {CheckIcon, CHECK_ICON_SIZE} from './CheckIcon'
+import {RectButton} from 'react-native-gesture-handler'
 
 export const Box = props => {
     return (
-        <View style={[...styles.box, {backgroundColor:'indigo'}]}/>
+        <View {...props}/>
 
     )
 }
 
-export const Box1 = props => {
+export const Selection = ({name, isSelected, onPress}) => {
     return (
-        <View style={[...styles.box, {backgroundColor:'turquoise'}]}/>
-
+        <SafeAreaView >
+            <RectButton {...{onPress}}/>
+            <View style={styles.button}>
+            <Text>{name}</Text>
+            {isSelected && <CheckIcon />}
+            </View>
+        </SafeAreaView>
     )
 }
 
-export const Box2 = props => {
-    return (
-        <View style={[...styles.box, {backgroundColor:'slateblue'}]}/>
-
-    )
-}
 
 const styles = StyleSheet.create({
-    box:{
-        height: 50,
-        width: 50,
-        borderRadius: 10
+    buttonContainer: {
+        borderColor: 'red',
+        borderWidth: 1
+        // borderBottomWidth: 1,
+        // borderColor: "#f4f6f3"
+    },
+    button:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent:'space-between',
+        height: 8 * 2 + CHECK_ICON_SIZE,
+        padding: 8
     }
 })

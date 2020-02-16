@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React,{useState, useRef, useEffect} from 'react'
 import { SafeAreaView, StyleSheet, View, Dimensions} from 'react-native'
+import {Box, Selection} from '../common/Boxes'
 import Animated from 'react-native-reanimated'
 
 const {width} = Dimensions.get('window')
@@ -39,15 +40,31 @@ const layouts = [
     }
 ]
 
+const boxes = ['magenta', 'rebeccapurple', 'skyblue']
+
 const ReanimatedTransition = props => {
+const ref = useRef(null)
 const [selectedLayout, setSelectedLayout] = useState(layouts[0].layout)
+
+useEffect(()=>{
+    console.log("selected", selectedLayout)
+},[selectedLayout])
+
     return (
         <SafeAreaView style={{flex:1}}>
             <View style={{flex: 1, ...selectedLayout.container}}>
-            <View style={{...styles.box, backgroundColor:'indigo'}}/>
-            <View style={{...styles.box, backgroundColor:'turquoise'}}/>
-            <View style={{...styles.box, backgroundColor:'slateblue'}}/>
+            {boxes.map((box,i)=>{
+                return <View key={i} style={{...styles.box, ...selectedLayout.child, backgroundColor: box}}/>
+            })
+            }
             </View>
+            {
+                layouts.map(layout=>{
+                    return(
+                        <Selection key={layout.id} name={layout.name} isSelected={selectedLayout === layout} onPress={()=>{setSelectedLayout(layout)}}/>
+                    )
+                })
+            }
         </SafeAreaView>
     )
 }
