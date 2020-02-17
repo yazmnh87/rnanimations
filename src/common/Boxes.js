@@ -10,9 +10,10 @@ export const Box = props => {
     )
 }
 
-export const Selection = ({name, isSelected, onPress}) => {
+export const Selection = ({isSelected, name, onPress}) => {
+    console.log(isSelected, onPress)
     return (
-        <SafeAreaView >
+        <SafeAreaView style={styles.buttonContainer}>
             <RectButton {...{onPress}}/>
             <View style={styles.button}>
             <Text>{name}</Text>
@@ -35,6 +36,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent:'space-between',
         height: 8 * 2 + CHECK_ICON_SIZE,
-        padding: 8
+        padding: 8,
+        borderColor: 'lime',
+        borderWidth: 1
     }
 })

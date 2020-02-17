@@ -44,7 +44,7 @@ const boxes = ['magenta', 'rebeccapurple', 'skyblue']
 
 const ReanimatedTransition = props => {
 const ref = useRef(null)
-const [selectedLayout, setSelectedLayout] = useState(layouts[0].layout)
+const [selectedLayout, setLayout] = useState(layouts[0].layout)
 
 useEffect(()=>{
     console.log("selected", selectedLayout)
@@ -60,8 +60,11 @@ useEffect(()=>{
             </View>
             {
                 layouts.map(layout=>{
+                    console.log("selected?",selectedLayout)
+                    console.log("isMAtch?",layout)
+                    console.log("in theMAP", selectedLayout === layout)
                     return(
-                        <Selection key={layout.id} name={layout.name} isSelected={selectedLayout === layout} onPress={()=>{setSelectedLayout(layout)}}/>
+                        <Selection key={layout.id} name={layout.name} isSelected={selectedLayout === layout} onPress={()=>console.log("this btn working?")}/>
                     )
                 })
             }
